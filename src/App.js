@@ -9,8 +9,25 @@ class App extends Component{
   constructor(){
     super();
     this.state = {
-      name: { firstName: 'Ozi', lastName: 'sglam'}, 
-      company: 'LV',
+      // added hardcoded array into code.
+      monsters: [
+        {
+          name: 'Linda',
+          id: '52g75gh3sxqf'
+        },
+        {
+          name: 'Frank',
+          id: '76stga2736r'
+        },
+        {
+          name: 'Jacky',
+          id: 'g7t346ys'
+        },
+        {
+          name: 'Ozi',
+          id: '278w93ruf'
+        },
+      ]
     };
   }
 
@@ -18,37 +35,23 @@ class App extends Component{
   render(){
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi {this.state.name.firstName}, I work at {this.state.company}.
-          </p>
-          <button
-          // set a custom function for the button
-           onClick={ () => {
-              this.setState(
-                () => {
-                  return {
-                    name: { firstName: 'Oguz', lastName: 'Saglam'},
-                  };
-                },
-                // handle async callbacks
-                () => {
-                  console.log(this.state);
-                }
-              );
-           }} 
-           >
-            Change Name
-           </button>
-        </header>
+        {
+          /*
+          map function: makes list/arrays mapped. 
+          So we don't need any "for" or "while" loops in order to iterate on
+          elements in an array. Bellisimo :) 
+          */
+          this.state.monsters.map((monster) => {
+              return (
+              <div key={monster.id}>
+                <h1>{monster.name}</h1>
+              </div>);
+            }
+          )
+        }
       </div>
     );
   }
 }
-
-/*function App() {
-  
-}*/
 
 export default App;
