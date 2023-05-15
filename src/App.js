@@ -2,6 +2,12 @@ import { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/*
+Dataflow: 
+- Initialize state
+- Render initial component UI
+- Make API call life-cylce and let React handle re-rendering
+*/
 
 // implement class
 class App extends Component{
