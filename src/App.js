@@ -10,27 +10,31 @@ class App extends Component{
     super();
     this.state = {
       // added hardcoded array into code.
-      monsters: [
-        {
-          name: 'Linda',
-          id: '52g75gh3sxqf'
-        },
-        {
-          name: 'Frank',
-          id: '76stga2736r'
-        },
-        {
-          name: 'Jacky',
-          id: 'g7t346ys'
-        },
-        {
-          name: 'Ozi',
-          id: '278w93ruf'
-        },
-      ]
+      monsters: [],
     };
   }
 
+  componentDidMount(){
+    /* 
+    In this particular function, that checks if the content fully loaded or not.
+    Tbh, I don't get the idea but what I know is, this is the best way to make a GET request and put the data 
+    into a variable.
+    */
+
+    // get request on jsonplaceholder
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())  
+      .then((users) => 
+        this.setState(
+          () => {
+            return {monsters: users};
+          },
+          () => {
+            console.log(this.state);
+          }
+        )
+      );
+  }
 
   render(){
     return (
