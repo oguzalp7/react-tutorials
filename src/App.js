@@ -17,6 +17,9 @@ class App extends Component{
     this.state = {
       // added hardcoded array into code.
       monsters: [],
+
+      // initialize the search filed in order to do dynamic search on the list of elements.
+      searchField: '',
     };
   }
 
@@ -43,6 +46,14 @@ class App extends Component{
   }
 
   render(){
+
+    // filter the elements related to the input text
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+
+      // convert monster name into lowercase manner and concat with includes function.
+      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    });
+
     return (
       <div className="App">
         {
@@ -59,18 +70,12 @@ class App extends Component{
               console.log(event.target.value);
               
               // save the searched string into a variable, and make it lowercase.
-              const searchString = event.target.value.toLocaleLowerCase();
+              const searchField = event.target.value.toLocaleLowerCase();
 
-              // filter the elements related to the input text
-              const filteredMonsters = this.state.monsters.filter((monster) => {
-
-                // convert monster name into lowercase manner and concat with includes function.
-                return monster.name.toLocaleLowerCase().includes(searchString);
-              });
 
               // alter the state.
               this.setState(() => {
-                return {monsters: filteredMonsters};
+                return {searchField};
               });
             }
           }
@@ -81,7 +86,7 @@ class App extends Component{
           So we don't need any "for" or "while" loops in order to iterate on
           elements in an array. Bellisimo :) 
           */
-          this.state.monsters.map((monster) => {
+          filteredMonsters.map((monster) => {
               return (
               <div key={monster.id}>
                 <h1>{monster.name}</h1>
