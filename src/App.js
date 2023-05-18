@@ -46,6 +46,19 @@ class App extends Component{
     return (
       <div className="App">
         {
+        /*create a search box input, that makes filtering.
+          ARGS: 
+            - className: class name in order to edit the element in CSS manner.
+            - type: search, indicates that this is a search box
+            - placeholder: When the input is empty, this parameter allows to add information about the search box
+        */
+        }
+          <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
+              console.log(event.target.value);
+            }
+          }
+          />
+        {
           /*
           map function: makes list/arrays mapped. 
           So we don't need any "for" or "while" loops in order to iterate on
