@@ -46,15 +46,32 @@ class App extends Component{
     return (
       <div className="App">
         {
-        /*create a search box input, that makes filtering.
+        /*create a search box input, that makes case-insenstive filtering.
           ARGS: 
             - className: class name in order to edit the element in CSS manner.
             - type: search, indicates that this is a search box
             - placeholder: When the input is empty, this parameter allows to add information about the search box
+            - onChange: takes a function argument in order to interact with the input box.
         */
         }
           <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
+              // print the value that entered to input box.
               console.log(event.target.value);
+              
+              // save the searched string into a variable, and make it lowercase.
+              const searchString = event.target.value.toLocaleLowerCase();
+
+              // filter the elements related to the input text
+              const filteredMonsters = this.state.monsters.filter((monster) => {
+
+                // convert monster name into lowercase manner and concat with includes function.
+                return monster.name.toLocaleLowerCase().includes(searchString);
+              });
+
+              // alter the state.
+              this.setState(() => {
+                return {monsters: filteredMonsters};
+              });
             }
           }
           />
