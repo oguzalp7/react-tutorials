@@ -95,21 +95,9 @@ class App extends Component{
             onChange={onSearchChange}
           />
         {
-          /*
-          map function: makes list/arrays mapped. 
-          So we don't need any "for" or "while" loops in order to iterate on
-          elements in an array. Bellisimo :) 
-          */
-          /*filteredMonsters.map((monster) => {
-              return (
-              <div key={monster.id}>
-                <h1>{monster.name}</h1>
-              </div>);
-            }
-          )*/
           
           // the props are the basically parameters that sends to the class and we can use them in the ./components/card-list/card-list.component.jsx
-          <CardList monsters={'I am the monster'} anything = {['a', 'z']} />
+          <CardList monsters={filteredMonsters} />
         }
       </div>
     );
