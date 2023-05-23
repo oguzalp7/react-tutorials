@@ -4,7 +4,13 @@ import { Component } from "react";
 // begining of card list class
 class CardList extends Component{
     render() {
-        return <div>This is the CardList Component</div>;
+
+        //debug what props are;
+        console.log(this.props);
+
+        return(
+            <div>This is the CardList Component</div>
+        ); 
     }
 }
 

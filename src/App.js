@@ -42,9 +42,6 @@ class App extends Component{
           () => {
             return {monsters: users};
           },
-          () => {
-            console.log(this.state);
-          }
         )
       );
   }
@@ -55,7 +52,7 @@ class App extends Component{
   */
   onSearchChange = (event) => {
     // print the value that entered to input box.
-    console.log(event.target.value);
+    //console.log(event.target.value);
     
     // save the searched string into a variable, and make it lowercase.
     const searchField = event.target.value.toLocaleLowerCase();
@@ -110,8 +107,9 @@ class App extends Component{
               </div>);
             }
           )*/
-
-          <CardList />
+          
+          // the props are the basically parameters that sends to the class and we can use them in the ./components/card-list/card-list.component.jsx
+          <CardList monsters={'I am the monster'} anything = {['a', 'z']} />
         }
       </div>
     );
