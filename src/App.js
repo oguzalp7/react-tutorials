@@ -1,5 +1,9 @@
 import { Component } from 'react';
-import logo from './logo.svg';
+
+//import CardList from the other module.
+import CardList from './components/card-list/card-list.component';
+
+// import css for related html components.
 import './App.css';
 
 /*
@@ -45,13 +49,35 @@ class App extends Component{
       );
   }
 
+  /*
+  OPTIMIZATION: We took out the callback function outside
+  of the render function, in order to prevent rendering each time.
+  */
+  onSearchChange = (event) => {
+    // print the value that entered to input box.
+    console.log(event.target.value);
+    
+    // save the searched string into a variable, and make it lowercase.
+    const searchField = event.target.value.toLocaleLowerCase();
+
+
+    // alter the state.
+    this.setState(() => {
+      return {searchField};
+    });
+  }
+
   render(){
 
+    // make optimizations
+    const { monsters, searchField } = this.state;
+    const { onSearchChange } = this;
+
     // filter the elements related to the input text
-    const filteredMonsters = this.state.monsters.filter((monster) => {
+    const filteredMonsters = monsters.filter((monster) => {
 
       // convert monster name into lowercase manner and concat with includes function.
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+      return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
     return (
@@ -65,20 +91,11 @@ class App extends Component{
             - onChange: takes a function argument in order to interact with the input box.
         */
         }
-          <input className='search-box' type='search' placeholder='search monsters' onChange={(event) => {
-              // print the value that entered to input box.
-              console.log(event.target.value);
-              
-              // save the searched string into a variable, and make it lowercase.
-              const searchField = event.target.value.toLocaleLowerCase();
-
-
-              // alter the state.
-              this.setState(() => {
-                return {searchField};
-              });
-            }
-          }
+          <input 
+            className='search-box'
+            type='search' 
+            placeholder='search monsters'
+            onChange={onSearchChange}
           />
         {
           /*
@@ -86,13 +103,15 @@ class App extends Component{
           So we don't need any "for" or "while" loops in order to iterate on
           elements in an array. Bellisimo :) 
           */
-          filteredMonsters.map((monster) => {
+          /*filteredMonsters.map((monster) => {
               return (
               <div key={monster.id}>
                 <h1>{monster.name}</h1>
               </div>);
             }
-          )
+          )*/
+
+          <CardList />
         }
       </div>
     );
