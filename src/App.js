@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 //import CardList from the other module.
 import CardList from './components/card-list/card-list.component';
-
+import SearchBox from './components/search-box/search-box.component';
 // import css for related html components.
 import './App.css';
 
@@ -80,24 +80,10 @@ class App extends Component{
     return (
       <div className="App">
         {
-        /*create a search box input, that makes case-insenstive filtering.
-          ARGS: 
-            - className: class name in order to edit the element in CSS manner.
-            - type: search, indicates that this is a search box
-            - placeholder: When the input is empty, this parameter allows to add information about the search box
-            - onChange: takes a function argument in order to interact with the input box.
-        */
-        }
-          <input 
-            className='search-box'
-            type='search' 
-            placeholder='search monsters'
-            onChange={onSearchChange}
-          />
-        {
-          
           // the props are the basically parameters that sends to the class and we can use them in the ./components/card-list/card-list.component.jsx
-          <CardList monsters={filteredMonsters} />
+          <><SearchBox onChangeHandler={onSearchChange}  placeholder='search monsters' className='search-box'/>
+            
+            <CardList monsters={filteredMonsters} /></>
         }
       </div>
     );
