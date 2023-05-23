@@ -81,7 +81,7 @@ class App extends Component{
       <div className="App">
         {
           // the props are the basically parameters that sends to the class and we can use them in the ./components/card-list/card-list.component.jsx
-          <><SearchBox onChangeHandler={onSearchChange}  placeholder='search monsters' className='search-box'/>
+          <><SearchBox onChangeHandler={onSearchChange}  placeholder='search monsters' className='monsters-search-box'/>
             
             <CardList monsters={filteredMonsters} /></>
         }
